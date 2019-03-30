@@ -13,11 +13,14 @@ const taskInput = document.querySelector('#task');
 loadEventListeners();
 
 function loadEventListeners(){
-
+    // add task event
     form.addEventListener('submit', addTask);
-
+    // add remove event listener
+    taskList.addEventListener('click', removeTask)
 }
 
+
+//Adding Task
 function addTask(e){
     //check if input is blank
     if (taskInput.value === ''){
@@ -45,8 +48,21 @@ function addTask(e){
     li.appendChild(link);
     //append li to ul
     taskList.appendChild(li);
-    console.log(li);
+
     //clear input
     taskInput.value = '';
     e.preventDefault();
+}
+
+
+//Remove Taks function
+
+function removeTask(e){
+
+    if(e.target.parentElement.classList.contains('delete-item')){
+        if(confirm("Are you sure you want to delete the task?")){
+                e.target.parentElement.parentElement.remove();
+        }
+
+    }
 }
